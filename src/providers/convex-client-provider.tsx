@@ -1,11 +1,11 @@
 'use client';
 
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { ClerkProvider, useAuth, SignInButton } from '@clerk/clerk-react';
 import { ConvexProviderWithClerk } from 'convex/react-clerk';
 import { Authenticated, ConvexReactClient, Unauthenticated } from 'convex/react';
 import { FaComments } from 'react-icons/fa';
-import { PulseLoader } from 'react-spinners'; // Add a loading spinner component
+import { PulseLoader } from 'react-spinners';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -15,14 +15,28 @@ const CLERK_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 const convex = new ConvexReactClient(CONVEX_URL);
 
 const ConvexClientProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  // State to handle blur effect on the background and logo
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
         <Authenticated>{children}</Authenticated>
         <Unauthenticated>
-          <div className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 w-full h-screen grid place-items-center p-4 animate-fadeIn">
-            <div className="flex flex-col items-center justify-center space-y-8">
-              <FaComments size={250} className="text-white animate-pulse" />
+          <div
+            className={`${
+              isHovered ? 'backdrop-blur-lg' : ''
+            } bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 w-full h-screen grid place-items-center p-4 animate-fadeIn`}
+          >
+            <div
+              className="flex flex-col items-center justify-center space-y-8"
+              onMouseEnter={() => setIsHovered(true)}  // When mouse enters, apply blur
+              onMouseLeave={() => setIsHovered(false)}  // When mouse leaves, remove blur
+            >
+              <FaComments
+                size={250}
+                className={`text-white animate-pulse ${isHovered ? 'blur-sm' : ''}`} // Apply blur on hover
+              />
 
               <Card className="bg-slate-800 w-[350px] border-none shadow-2xl rounded-xl p-6 space-y-6 transform transition-transform hover:scale-105 hover:shadow-lg">
                 <CardHeader>
