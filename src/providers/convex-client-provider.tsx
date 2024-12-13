@@ -30,7 +30,7 @@ const ConvexClientProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
             <Card className='bg-slate-800 w-[350px] border-none shadow-xl'>
               <CardHeader>
-                <CardTitle className='text-white'>Authenticate</CardTitle>
+                <CardTitle className='text-white'>Welcome To Chatty!</CardTitle>
               </CardHeader>
               <CardContent className='text-white'>
                 <SignInButton />
