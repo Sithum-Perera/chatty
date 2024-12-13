@@ -67,3 +67,39 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+
+.login-form {
+  transition: transform 0.5s ease-out;
+  transform: translateX(100%);
+}
+
+.login-form.show {
+  transform: translateX(0);
+}
+
+.logo:hover {
+  cursor: pointer;
+  animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
