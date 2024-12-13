@@ -23,18 +23,22 @@ const ConvexClientProvider: FC<{ children: ReactNode }> = ({ children }) => {
           <div className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 w-full h-screen grid place-items-center p-4 animate-fadeIn">
             <div className="flex flex-col items-center justify-center space-y-8">
               <FaComments size={250} className="text-white animate-pulse" />
-              
+
               <Card className="bg-slate-800 w-[350px] border-none shadow-2xl rounded-xl p-6 space-y-6 transform transition-transform hover:scale-105 hover:shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-white text-3xl font-bold tracking-wider">Welcome to Chatty!</CardTitle>
                 </CardHeader>
                 <CardContent className="text-white text-center space-y-4">
                   <p className="text-lg font-medium text-gray-300">Sign in to start chatting</p>
-                  
-                  {/* SignIn Button with enhanced effects */}
+
+                  {/* SignIn Button with matching gradient effect */}
                   <div className="flex justify-center items-center space-x-4">
-                    <SignInButton className="bg-primary-main text-white py-3 px-6 rounded-md shadow-lg transition-all hover:bg-primary-dark focus:ring-2 focus:ring-primary-main active:scale-95">
-                      Sign In
+                    <SignInButton>
+                      <button className="relative overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 text-black py-3 px-6 rounded-full font-semibold text-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
+                        Sign In
+                        {/* Adding a subtle animated glow effect */}
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 opacity-30 animate-pulse rounded-full"></span>
+                      </button>
                     </SignInButton>
                   </div>
                 </CardContent>
