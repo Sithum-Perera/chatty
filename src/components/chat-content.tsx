@@ -21,8 +21,8 @@ export const ChatContent: FC<{ chatId: Id<'conversations'> }> = ({
   const members = conversation?.isGroup
     ? conversation?.otherMembers ?? []
     : conversation?.otherMember
-      ? [conversation.otherMember]
-      : [];
+    ? [conversation.otherMember]
+    : [];
 
   const { mutate: markAsRead, state: _ } = useMutationHandler(
     api.conversation.markAsRead
@@ -36,8 +36,8 @@ export const ChatContent: FC<{ chatId: Id<'conversations'> }> = ({
 
   const getSeenMessage = (messageId: Id<'messages'>) => {
     const seenUsers = members
-      .filter(member => member.lastSeenMessageId === messageId)
-      .map(member => member.username?.split(' ')[0]);
+      .filter((member) => member.lastSeenMessageId === messageId)
+      .map((member) => member.username?.split(' ')[0]);
 
     if (seenUsers.length === 0) return undefined;
 
@@ -68,7 +68,8 @@ export const ChatContent: FC<{ chatId: Id<'conversations'> }> = ({
   const status = conversation?.otherMember?.status || '';
 
   return (
-    <div className='h-full flex'>
+    <div className='h-full flex flex-col'>
+      {/* Header */}
       <ChatHeader
         chatAvatar={chatAvatar}
         username={name!}
@@ -77,7 +78,8 @@ export const ChatContent: FC<{ chatId: Id<'conversations'> }> = ({
         status={status}
       />
 
-      <div className='p-3 flex flex-1 flex-col-reverse gap-2'>
+      {/* Messages Container with Scrolling Fix */}
+      <div className='flex-1 overflow-y-auto p-3 flex flex-col-reverse gap-2'>
         {messages?.map((message, index) => (
           <MessageItem
             key={message._id}
@@ -95,6 +97,7 @@ export const ChatContent: FC<{ chatId: Id<'conversations'> }> = ({
         ))}
       </div>
 
+      {/* Footer */}
       <ChatFooter chatId={chatId} currentUserId={user?.id!} />
     </div>
   );

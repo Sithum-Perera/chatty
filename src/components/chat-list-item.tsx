@@ -29,9 +29,13 @@ export const ChatListItem: FC<ChatListItemProps> = ({
   return (
     <Link
       href={`/chats/${chatId}`}
-      className={cn('p-3 rounded-2xl flex justify-between', {
-        'bg-gray-200 dark:bg-gray-800': isActive,
-      })}
+      className={cn(
+        'p-3 rounded-2xl flex justify-between transition duration-200 ease-in-out transform',
+        {
+          'bg-gray-200 dark:bg-gray-800': isActive, // Active state
+          'hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-105': !isActive, // Hover effect
+        }
+      )}
     >
       <div className='flex space-x-3'>
         <Avatar className='h-12 w-12'>

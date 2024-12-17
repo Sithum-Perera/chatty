@@ -105,3 +105,23 @@
 }
 
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Vertical scrollbar width */
+  height: 8px; /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background for the track */
+  border-radius: 10px; /* Rounded edges */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Darker gray for the scrollbar thumb */
+  border-radius: 10px; /* Rounded thumb edges */
+  transition: background 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker gray on hover */
+}
